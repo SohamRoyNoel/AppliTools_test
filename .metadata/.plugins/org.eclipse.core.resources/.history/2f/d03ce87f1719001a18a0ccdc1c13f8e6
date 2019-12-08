@@ -1,0 +1,17 @@
+package Appli.AppliWorld;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import com.applitools.eyes.selenium.Eyes;
+
+public class Demo {
+
+	public static void main(String[] args) {
+		
+		WebDriver driver = new ChromeDriver();
+		Eyes eyes = new Eyes();
+		eyes.setApiKey("7FDuYlQxftexc7io3ZWKCRqwoAKzwKd98ZXa69NfSOqI110");
+	}
+
+}

@@ -1,0 +1,47 @@
+package Appli.AppliWorld;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import com.applitools.eyes.RectangleSize;
+import com.applitools.eyes.selenium.Eyes;
+
+public class LoginTest {
+
+	WebDriver driver;
+	Eyes eyes;
+	String testname;
+
+	@Before
+	public void SetUp() {
+		WebDriver browser = new ChromeDriver();
+		eyes = new Eyes();
+		eyes.setApiKey("7FDuYlQxftexc7io3ZWKCRqwoAKzwKd98ZXa69NfSOqI110");
+		driver = eyes.open(browser, "the-internet", testname, new RectangleSize(1000, 600));
+	}
+	
+	public TestWatcher watcher = new TestWatcher() {
+		protected void starting(Description description) {
+			testname = description.getDisplayName();
+		}
+	};
+
+	@After
+	public void TearDown() { driver.quit(); }
+
+	public void loginWithValidCred() {
+		driver.navigate().to("http://the-internet.herokuapp.com/login");
+		eyes.checkWindow("Login Form");
+		driver.findElement(By.id("username")).sendKeys("Booty");
+		driver.findElement(By.id("password")).sendKeys("Bichi");
+		driver.findElement(By.cssSelector("button")).click();
+		eyes.checkWindow("Logged in");
+		eyes.close();
+	}
+}

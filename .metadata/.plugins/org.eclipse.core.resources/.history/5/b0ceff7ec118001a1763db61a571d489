@@ -1,0 +1,26 @@
+package Appli.AppliWorld;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class LoginTest {
+
+	WebDriver driver;
+	
+	@Before
+	public void SetUp() { driver = new ChromeDriver(); }
+	
+	@After
+	public void TearDown() { driver.quit(); }
+	
+	public void loginWithValidCred() {
+		driver.navigate().to("http://the-internet.herokuapp.com/login");
+		driver.findElement(By.id("username")).sendKeys("Booty");
+		driver.findElement(By.id("password")).sendKeys("Bichi");
+		driver.findElement(By.cssSelector("button")).click();
+	}
+}
